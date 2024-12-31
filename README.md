@@ -1,5 +1,5 @@
 # BotVision
-### Note: This is old code of mine, i recently crammed it out of the deepest depths of my private GitHub repositories and refactored it to be more readable and maintainable.
+### Note: This is old code of mine, i recently crammed it out of the deepest depths of my private GitHub repositories (from 2021) and refactored it to be more reliable and modern.
 ### Nevertheless, im not actively developing this bot anymore.
 
 
