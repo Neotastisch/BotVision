@@ -1,5 +1,6 @@
 # BotVision
-### Note: This is old code of mine, I'm not actively developing this bot anymore.
+### Note: This is old code of mine, i recently crammed it out of the deepest depths of my private GitHub repositories and refactored it to be more readable and maintainable.
+### Nevertheless, im not actively developing this bot anymore.
 
 
 <div align="center">
