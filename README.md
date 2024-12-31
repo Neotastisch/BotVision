@@ -1,4 +1,6 @@
 # BotVision
+### Note: This is old code of mine, I'm not actively developing this bot anymore.
+
 
 <div align="center">
 

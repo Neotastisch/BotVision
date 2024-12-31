@@ -54,8 +54,14 @@ const bot = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildMessageTyping,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMessageReactions
     ],
-    partials: [Partials.Channel]
+    partials: [Partials.Channel, Partials.Message, Partials.User]
 });
 bot.db = db;
 
@@ -73,16 +79,7 @@ String.prototype.toHHMMSS = function () {
 }
 
 const { GiveawaysManager } = require('discord-giveaways');
-const bot = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMessageReactions,
-        GatewayIntentBits.GuildInvites,
-        GatewayIntentBits.GuildMembers
-      ],
-})
+
 
 // Custom giveaway manager that uses SQLite
 class SQLiteGiveawayManager extends GiveawaysManager {
