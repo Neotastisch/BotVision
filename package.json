@@ -1,0 +1,32 @@
+{
+  "name": "botvision",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@devraelfreeze/discordjs-antispam": "^3.0.0",
+    "bad-words": "^3.0.4",
+    "cors": "^2.8.5",
+    "discord-giveaways": "^6.0.1",
+    "discord.js": "^14.0.2",
+    "ejs": "^3.1.8",
+    "epic-free-games": "^3.1.1",
+    "express": "^4.18.2",
+    "forever-monitor": "^1.5.2",
+    "fs": "^0.0.1-security",
+    "ms": "^2.1.3",
+    "node-crc": "^1.3.2",
+    "path": "^0.12.7",
+    "pm2": "^5.2.2",
+    "sqlite3": "^5.1.6",
+    "snakecord": "^1.0.9",
+    "translation-google": "^0.2.1"
+  },
+  "homepage": "https://github.com/Neotastisch/BotVision-2#readme",
+  "description": "A Discord bot with moderation, utility, and fun features"
+}

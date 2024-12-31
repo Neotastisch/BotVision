@@ -1,0 +1,54 @@
+{
+    "Template-1":{
+        "Categories":{
+        "|| Welcome-Bye ||": {
+            "😊│welcome": {
+                "allow": ["VIEW_CHANNEL"],
+                "deny": ["SEND_MESSAGES"]
+            },
+            "👋│bye": {
+                "allow": ["VIEW_CHANNEL"],
+                "deny": ["SEND_MESSAGES"]
+            }
+        },
+        "|| General ||": {
+            "📰│information": {
+                "allow": ["VIEW_CHANNEL"],
+                "deny": ["SEND_MESSAGES"]
+            },
+            "❗│rules": {
+                "allow": ["VIEW_CHANNEL"],
+                "deny": ["SEND_MESSAGES"]
+            },
+            "📳│notification-role": {
+                "allow": ["VIEW_CHANNEL"],
+                "deny": ["SEND_MESSAGES"]
+            }
+        },
+        "|| 🏴 Chat ||": {
+            "💬│chat-en": {
+                "allow": ["SEND_MESSAGES"],
+                "deny": [""]
+            },
+            "😂│memes": {
+                "allow": ["SEND_MESSAGES"],
+                "deny": [""]
+            },
+            "🤖│bot-commands": {
+                "allow": ["SEND_MESSAGES"],
+                "deny": [""]
+            },
+            "❓│ticket": {
+                "allow": ["SEND_MESSAGES"],
+                "deny": [""]
+            }
+        }
+        },
+        "Roles":{
+            "Owner":{
+                "Color": "BLUE"
+            }
+            
+        }
+    }
+}

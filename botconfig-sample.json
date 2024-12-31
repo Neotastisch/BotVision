@@ -1,0 +1,10 @@
+{
+	"token": "",
+	"client_id": "",
+	"client_secret": "",
+	"nasa_api_key": "",
+	"debug": {
+		"active": false,
+		"guildid": ""
+	}
+}
