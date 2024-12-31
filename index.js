@@ -16,7 +16,8 @@ db.serialize(() => {
     leave_channel TEXT,
     join_role TEXT,
     join_message TEXT,
-    staff_role TEXT
+    staff_role TEXT,
+    levelsystem TEXT DEFAULT 'Off'
   )`);
 
   // Create levels table
@@ -45,6 +46,18 @@ db.serialize(() => {
     messages JSON
   )`);
 });
+
+// Make db accessible to client
+const bot = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMembers,
+    ],
+    partials: [Partials.Channel]
+});
+bot.db = db;
 
 String.prototype.toHHMMSS = function () {
     var sec_num = parseInt(this, 10);

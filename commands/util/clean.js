@@ -3,7 +3,6 @@ module.exports = {
   name: 'clean',
   description: 'Deletes a specific ammount of messages',
   shown: true,
-  neoonly: false,
   args: "[Number]",
   permissions: ["MANAGE_MESSAGES"],
   async execute(client, args, msg ) {

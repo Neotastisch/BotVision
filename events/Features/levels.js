@@ -1,51 +1,65 @@
 const path = require('path');
 const discord = require("discord.js")
 const fs = require('fs')
+
 module.exports = {
     name: 'messageCreate',
     description: "Leveling system",
-    run: (client, msg) => {
-        if (msg.author.bot) return
-        var { levels } = client
-        const bot = client
-        if(msg.channel.type === 'dm')return
-        if(!client.data[msg.guild.id])return
-        if(!client.data[msg.guild.id].levelsystem == "On")return
-        if(!levels) levels = {}
-        var addXP = Math.floor(Math.random() * 8) + 3;
-        if (!levels[msg.guild.id]) {
-            levels[msg.guild.id] = {}
-        }
-        if (!levels[msg.guild.id][msg.author.id]) {
-            levels[msg.guild.id][msg.author.id] = {
-                level: 0,
-                xp: 0,
-                reqxp: 100,
-                username: msg.author.username
-            }
-        }
+    run: async (client, msg) => {
+        if (msg.author.bot) return;
+        if (msg.channel.type === 'dm') return;
 
-        levels[msg.guild.id][msg.author.id].xp += addXP;
-        if (levels[msg.guild.id][msg.author.id].xp > levels[msg.guild.id][msg.author.id].reqxp) {
-            levels[msg.guild.id][msg.author.id].xp -= levels[msg.guild.id][msg.author.id].reqxp;
-            levels[msg.guild.id][msg.author.id].reqxp *= 1.25;
-            levels[msg.guild.id][msg.author.id].reqxp = Math.floor(levels[msg.guild.id][msg.author.id].reqxp)
-            levels[msg.guild.id][msg.author.id].level += 1;
+        // Check if leveling is enabled for this guild
+        const guildSettings = await new Promise((resolve) => {
+            client.db.get('SELECT * FROM guild_settings WHERE guild_id = ?', [msg.guild.id], (err, row) => {
+                if (err) {
+                    console.error(err);
+                    resolve(null);
+                }
+                resolve(row);
+            });
+        });
 
-            const embed = new discord.EmbedBuilder()
-                .setColor('YELLOW')
-                .setTitle("🆙 " + msg.author.tag + " leveled up! 🆙")
-                .setDescription("to level 🌟**" + levels[msg.guild.id][msg.author.id].level + "**🌟!")
-            msg.reply({ embeds: [embed]})
+        if (!guildSettings || guildSettings.levelsystem !== 'On') return;
 
-            fs.writeFile("./levels.json", JSON.stringify(levels, null, "\t"), function (err) {
-                if (err) console.log(err)
-            })
-        }
+        // Get user's current level data
+        const addXP = Math.floor(Math.random() * 8) + 3;
         
+        client.db.get('SELECT * FROM user_levels WHERE user_id = ? AND guild_id = ?', 
+            [msg.author.id, msg.guild.id], 
+            async (err, row) => {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
 
+                if (!row) {
+                    // Create new user entry
+                    client.db.run('INSERT INTO user_levels (user_id, guild_id, xp, level) VALUES (?, ?, ?, ?)',
+                        [msg.author.id, msg.guild.id, addXP, 0]);
+                    return;
+                }
 
+                const newXP = row.xp + addXP;
+                const reqXP = 100 * Math.pow(1.25, row.level);
 
+                if (newXP >= reqXP) {
+                    // Level up
+                    const newLevel = row.level + 1;
+                    client.db.run('UPDATE user_levels SET xp = ?, level = ? WHERE user_id = ? AND guild_id = ?',
+                        [newXP - reqXP, newLevel, msg.author.id, msg.guild.id]);
 
+                    const embed = new discord.EmbedBuilder()
+                        .setColor('Yellow')
+                        .setTitle("🆙 " + msg.author.tag + " leveled up! 🆙")
+                        .setDescription("to level 🌟**" + newLevel + "**🌟!")
+                    msg.reply({ embeds: [embed] });
+                } else {
+                    // Just update XP
+                    client.db.run('UPDATE user_levels SET xp = ? WHERE user_id = ? AND guild_id = ?',
+                        [newXP, msg.author.id, msg.guild.id]);
+                }
+            }
+        );
     },
 };

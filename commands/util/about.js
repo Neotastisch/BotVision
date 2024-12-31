@@ -22,34 +22,14 @@ module.exports = {
   }
 const message = msg
 
-const row = new ActionRowBuilder()
-.addComponents(
-  new ButtonBuilder()
-  .setURL("https://discord.com/api/oauth2/authorize?client_id=825657062041583628&permissions=8&scope=bot%20applications.commands")
-					.setLabel('Invite')
-					.setStyle(ButtonStyle.Link),
-			)
-      .addComponents(
-        new ButtonBuilder()
-					.setURL("http://botvision.gq/")
-					.setLabel('Website')
-					.setStyle(ButtonStyle.Link),
-			)
-      .addComponents(
-        new ButtonBuilder()
-        .setURL("https://discord.gg/E7wKzpCuM4")
-					.setLabel('Support Server')
-					.setStyle(ButtonStyle.Link),
-			);
-
 var time = process.uptime();
 var uptime = (time + "").toHHMMSS();
 let embed = new discord.EmbedBuilder()
 embed.setTitle("❓ Stats ❓")
 embed.addFields({name: "Uptime: " ,value: uptime})
-embed.addFields({name: "Servers with BotVision: " ,value: client.guilds.cache.size+" "})
+embed.addFields({name: "Servers: " ,value: client.guilds.cache.size+" "})
 embed.setTimestamp()
 
-const m = await message.reply({embeds:[embed], components: [row]})
+const m = await message.reply({embeds:[embed]})
   },
 };

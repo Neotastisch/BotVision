@@ -15,7 +15,7 @@ module.exports = {
 
             if (cmd.permissions) {
                 for (const permission of cmd.permissions) {
-                    if (!interaction.member.permissions.has(permission) && interaction.user.id !== client.neoid) {
+                    if (!interaction.member.permissions.has(permission)) {
                         return interaction.reply({ 
                             embeds: [client.noperms],
                             ephemeral: true 

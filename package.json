@@ -27,6 +27,5 @@
     "snakecord": "^1.0.9",
     "translation-google": "^0.2.1"
   },
-  "homepage": "https://github.com/Neotastisch/BotVision-2#readme",
   "description": "A Discord bot with moderation, utility, and fun features"
 }
