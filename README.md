@@ -5,7 +5,7 @@
 A powerful Discord bot with moderation, utility, and fun features.
 
 [![Discord.js](https://img.shields.io/badge/discord.js-v14-blue.svg)](https://discord.js.org)
-[![License](https://img.shields.io/badge/license-ISC-green.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node.js-%3E%3D16-green.svg)](https://nodejs.org)
 
 </div>
