@@ -215,7 +215,6 @@ client.slashcommands = [];
 client.aliases = new Collection()
 client.std = require("./servertemplates.json")
 client.giveaway = manager
-client.voiceGenerator = new Collection()
 
 const exampleEmbed = new EmbedBuilder()
   .setColor('#FF0000')

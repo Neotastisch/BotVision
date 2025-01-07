@@ -12,7 +12,7 @@ module.exports = {
 
         let user = msg.mentions.users.first() || msg.author
 
-        if (levels[msg.guild.id]?.[user.id] == undefined) { msg.channel.send("There is no data for " + user.username + " in our database."); return }
+        if (levels[msg.guild.id][user.id] == undefined) { msg.channel.send("There is no data for " + user.username + " in our database."); return }
         const embed = new discord.EmbedBuilder()
             .setTitle("🎚️ Level card 🎚️")
 

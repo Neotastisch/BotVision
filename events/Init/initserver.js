@@ -9,7 +9,6 @@ module.exports = {
     }
     if(message.author.bot)return
     var serverstats = client.data
-    if(!serverstats) serverstats = {}
     if(!serverstats[message.guildId]) serverstats[message.guildId] = {}
 
     if(serverstats[message.guildId]?.hasOwnProperty("welcomechannel") == false){
